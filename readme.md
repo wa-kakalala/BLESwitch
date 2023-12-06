@@ -1,5 +1,9 @@
 # BLESwitch
 
+![image-20231206133514032](pic/image-20231206133514032.png)
+
+![image-20231206133636743](pic/image-20231206133636743.png)
+
 ## protocol
 
 ### frame format
