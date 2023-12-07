@@ -19,7 +19,8 @@ typedef struct BLE_DATA_STRUCT {
 
 typedef enum BLE_CMD {
   	BLE_NOP,
-	BLE_OPEN_DOOR
+	BLE_OPEN_DOOR,
+	BLE_CLOSE_DOOR
 }BLE_CMD;
 
 BLE_CMD Ble_Decode(void);

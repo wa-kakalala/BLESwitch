@@ -13,7 +13,7 @@ BLE_CMD Ble_Decode(){
 			return BLE_OPEN_DOOR;
 		}else if( ble_structor -> cmd_d == 0x00 ){
 		    rx_enable = 1; 
-			return BLE_NOP;
+			return BLE_CLOSE_DOOR;
 		}else{
 			rx_enable = 1; 
 		 	return BLE_NOP;

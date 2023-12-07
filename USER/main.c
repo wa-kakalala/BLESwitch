@@ -2,10 +2,12 @@
 #include "uart.h"
 #include "led.h"
 #include "ble.h"
+#include "steer.h"
 
 void Sys_Init(){
  	Led_Init();
 	Uart_Init();
+	Steer_Init();
 	EA = 1;
 }
 
@@ -19,23 +21,28 @@ void main(){
 		ble_cmd = Ble_Decode();
 		switch( ble_cmd ) {
 			case BLE_OPEN_DOOR:
+				//Open_Door();
+				Led_On();
+				break;
+			case BLE_CLOSE_DOOR:
+				Led_Off();
 				break;
 	
 		    default: break;
 	    }
 
 		// monitor system's running
-		led_count ++ ;
-		if( led_count == 50000 ) {
-	 		if( led_state == 0 ){
-		 		Led_On();
-				led_state = 1;
-			}else{
-		 		Led_Off();
-				led_state = 0;
-			}	
-			led_count = 0;
-		}
+//		led_count ++ ;
+//		if( led_count == 50000 ) {
+//	 		if( led_state == 0 ){
+//		 		Led_On();
+//				led_state = 1;
+//			}else{
+//		 		Led_Off();
+//				led_state = 0;
+//			}	
+//			led_count = 0;
+//		}
 	}
 }
 

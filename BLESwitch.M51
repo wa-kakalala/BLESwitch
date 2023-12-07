@@ -1,4 +1,4 @@
-BL51 BANKED LINKER/LOCATER V6.22                                                        12/06/2023  13:30:06  PAGE 1
+BL51 BANKED LINKER/LOCATER V6.22                                                        12/07/2023  21:54:55  PAGE 1
 
 
 BL51 BANKED LINKER/LOCATER V6.22, INVOKED BY:
@@ -18,7 +18,6 @@ INPUT MODULES INCLUDED:
   .\OUTPUT\ble.obj (BLE)
   D:\SOFTWARE\KEIL4\C51\LIB\C51S.LIB (?C_INIT)
   D:\SOFTWARE\KEIL4\C51\LIB\C51S.LIB (?C?CLDOPTR)
-  D:\SOFTWARE\KEIL4\C51\LIB\C51S.LIB (?C?SLCMP)
 
 
 LINK MAP OF MODULE:  .\OUTPUT\BLESwitch (?C_STARTUP)
@@ -31,76 +30,85 @@ LINK MAP OF MODULE:  .\OUTPUT\BLESwitch (?C_STARTUP)
             REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
             DATA    0008H     0010H     UNIT         ?DT?UART
             DATA    0018H     0006H     UNIT         _DATA_GROUP_
-            IDATA   001EH     0001H     UNIT         ?STACK
+            DATA    001EH     0002H     UNIT         ?DT?STEER
+            IDATA   0020H     0001H     UNIT         ?STACK
 
             * * * * * * *   C O D E   M E M O R Y   * * * * * * *
             CODE    0000H     0003H     ABSOLUTE     
-            CODE    0003H     0057H     UNIT         ?PR?BLE_DECODE?BLE
-            CODE    005AH     0009H     UNIT         ?PR?SYS_INIT?MAIN
+            CODE    0003H     0008H     UNIT         ?PR?_TIMER2_ENABLE?UART
+            CODE    000BH     0003H     ABSOLUTE     
+            CODE    000EH     003EH     UNIT         ?PR?OPEN_DOOR?STEER
+            CODE    004CH     0016H     UNIT         ?PR?UART_INIT?UART
+                    0062H     0001H                  *** GAP ***
             CODE    0063H     0003H     ABSOLUTE     
             CODE    0066H     0019H     UNIT         ?PR?_UART_SENDBYTE?UART
             CODE    007FH     0004H     UNIT         ?PR?ENABLE_EXT4?UART
             CODE    0083H     0003H     ABSOLUTE     
             CODE    0086H     00ADH     UNIT         ?PR?TIMER2_INTERRUPT?UART
             CODE    0133H     008CH     UNIT         ?C_C51STARTUP
-            CODE    01BFH     0043H     UNIT         ?C?LIB_CODE
-            CODE    0202H     0040H     UNIT         ?PR?MAIN?MAIN
-            CODE    0242H     0026H     UNIT         ?PR?EXT4_INTERRUPT?UART
-            CODE    0268H     0016H     UNIT         ?PR?UART_INIT?UART
-            CODE    027EH     0012H     UNIT         ?PR?UART_LOOPTEST?UART
-            CODE    0290H     000AH     UNIT         ?PR?TIMER2_CONFIG?UART
-            CODE    029AH     0008H     UNIT         ?PR?_TIMER2_ENABLE?UART
-            CODE    02A2H     0007H     UNIT         ?PR?LED_INIT?LED
-            CODE    02A9H     0007H     UNIT         ?C_INITSEG
-            CODE    02B0H     0007H     UNIT         ?PR?STEER_INIT?STEER
-            CODE    02B7H     0004H     UNIT         ?PR?DISABLE_EXT4?UART
-            CODE    02BBH     0004H     UNIT         ?PR?TIMER2_DISABLE?UART
-            CODE    02BFH     0003H     UNIT         ?PR?LED_ON?LED
-            CODE    02C2H     0003H     UNIT         ?PR?LED_OFF?LED
-            CODE    02C5H     0003H     UNIT         ?PR?STEER_ON?STEER
-            CODE    02C8H     0003H     UNIT         ?PR?STEER_OFF?STEER
-BL51 BANKED LINKER/LOCATER V6.22                                                      12/06/2023  13:30:06  PAGE 2
+            CODE    01BFH     0058H     UNIT         ?PR?BLE_DECODE?BLE
+            CODE    0217H     002DH     UNIT         ?C?LIB_CODE
+            CODE    0244H     0026H     UNIT         ?PR?EXT4_INTERRUPT?UART
+            CODE    026AH     001FH     UNIT         ?PR?MAIN?MAIN
+            CODE    0289H     001EH     UNIT         ?PR?_DELAY_100US?STEER
+            CODE    02A7H     0012H     UNIT         ?PR?UART_LOOPTEST?UART
+            CODE    02B9H     0011H     UNIT         ?PR?TIMER0_CONFIG?STEER
+            CODE    02CAH     000DH     UNIT         ?PR?TIMER0_INTERRUPT?STEER
+            CODE    02D7H     000CH     UNIT         ?PR?SYS_INIT?MAIN
+            CODE    02E3H     000BH     UNIT         ?C_INITSEG
+            CODE    02EEH     000AH     UNIT         ?PR?TIMER2_CONFIG?UART
+            CODE    02F8H     0009H     UNIT         ?PR?STEER_INIT?STEER
+            CODE    0301H     0007H     UNIT         ?PR?LED_INIT?LED
+BL51 BANKED LINKER/LOCATER V6.22                                                      12/07/2023  21:54:55  PAGE 2
 
 
+            CODE    0308H     0004H     UNIT         ?PR?DISABLE_EXT4?UART
+            CODE    030CH     0004H     UNIT         ?PR?TIMER2_DISABLE?UART
+            CODE    0310H     0003H     UNIT         ?PR?LED_ON?LED
+            CODE    0313H     0003H     UNIT         ?PR?LED_OFF?LED
 
 
 
 OVERLAY MAP OF MODULE:   .\OUTPUT\BLESwitch (?C_STARTUP)
 
 
-SEGMENT                             DATA_GROUP 
-  +--> CALLED SEGMENT             START    LENGTH
--------------------------------------------------
-?C_C51STARTUP                     -----    -----
+SEGMENT                              DATA_GROUP 
+  +--> CALLED SEGMENT              START    LENGTH
+--------------------------------------------------
+?C_C51STARTUP                      -----    -----
   +--> ?PR?MAIN?MAIN
   +--> ?C_INITSEG
 
-?PR?MAIN?MAIN                     0018H    0003H
+?PR?MAIN?MAIN                      0018H    0003H
   +--> ?PR?SYS_INIT?MAIN
   +--> ?PR?BLE_DECODE?BLE
   +--> ?PR?LED_ON?LED
   +--> ?PR?LED_OFF?LED
 
-?PR?SYS_INIT?MAIN                 -----    -----
+?PR?SYS_INIT?MAIN                  -----    -----
   +--> ?PR?LED_INIT?LED
   +--> ?PR?UART_INIT?UART
+  +--> ?PR?STEER_INIT?STEER
 
-?PR?UART_INIT?UART                -----    -----
+?PR?UART_INIT?UART                 -----    -----
   +--> ?PR?ENABLE_EXT4?UART
   +--> ?PR?TIMER2_CONFIG?UART
   +--> ?PR?TIMER2_DISABLE?UART
 
-?PR?BLE_DECODE?BLE                001BH    0003H
+?PR?STEER_INIT?STEER               -----    -----
+  +--> ?PR?TIMER0_CONFIG?STEER
+
+?PR?BLE_DECODE?BLE                 001BH    0003H
 
 *** NEW ROOT ***************************************************
 
-?PR?EXT4_INTERRUPT?UART           -----    -----
+?PR?EXT4_INTERRUPT?UART            -----    -----
   +--> ?PR?_TIMER2_ENABLE?UART
   +--> ?PR?DISABLE_EXT4?UART
 
 *** NEW ROOT ***************************************************
 
-?PR?TIMER2_INTERRUPT?UART         -----    -----
+?PR?TIMER2_INTERRUPT?UART          -----    -----
   +--> ?PR?TIMER2_DISABLE?UART
   +--> ?PR?_TIMER2_ENABLE?UART
   +--> ?PR?ENABLE_EXT4?UART
@@ -111,17 +119,17 @@ SYMBOL TABLE OF MODULE:  .\OUTPUT\BLESwitch (?C_STARTUP)
 
   VALUE           TYPE          NAME
   ----------------------------------
+BL51 BANKED LINKER/LOCATER V6.22                                                      12/07/2023  21:54:55  PAGE 3
+
+
 
   -------         MODULE        ?C_STARTUP
   C:0133H         SEGMENT       ?C_C51STARTUP
-  I:001EH         SEGMENT       ?STACK
+  I:0020H         SEGMENT       ?STACK
   C:0000H         PUBLIC        ?C_STARTUP
   D:00E0H         SYMBOL        ACC
   D:00F0H         SYMBOL        B
   D:0083H         SYMBOL        DPH
-BL51 BANKED LINKER/LOCATER V6.22                                                      12/06/2023  13:30:06  PAGE 3
-
-
   D:0082H         SYMBOL        DPL
   N:0000H         SYMBOL        IBPSTACK
   N:0100H         SYMBOL        IBPSTACKTOP
@@ -152,14 +160,15 @@ SYMBOL TABLE OF MODULE:  .\OUTPUT\BLESwitch (?C_STARTUP)
   -------         MODULE        MAIN
   C:0000H         SYMBOL        _ICE_DUMMY_
   B:00A8H.7       PUBLIC        EA
-  C:0202H         PUBLIC        main
-  C:005AH         PUBLIC        Sys_Init
+  C:026AH         PUBLIC        main
+  C:02D7H         PUBLIC        Sys_Init
   -------         PROC          SYS_INIT
-  C:005AH         LINE#         6
-  C:005AH         LINE#         7
-  C:005DH         LINE#         8
-  C:0060H         LINE#         9
-  C:0062H         LINE#         10
+  C:02D7H         LINE#         7
+  C:02D7H         LINE#         8
+  C:02DAH         LINE#         9
+  C:02DDH         LINE#         10
+  C:02E0H         LINE#         11
+  C:02E2H         LINE#         12
   -------         ENDPROC       SYS_INIT
   -------         PROC          MAIN
   -------         DO            
@@ -167,32 +176,22 @@ SYMBOL TABLE OF MODULE:  .\OUTPUT\BLESwitch (?C_STARTUP)
   D:0018H         SYMBOL        led_count
   D:001AH         SYMBOL        led_state
   -------         ENDDO         
-  C:0202H         LINE#         12
-  C:0202H         LINE#         14
-  C:0207H         LINE#         15
-  C:0209H         LINE#         16
-  C:020CH         LINE#         18
-  C:020CH         LINE#         19
-  C:020FH         LINE#         20
-  C:020FH         LINE#         21
-  C:020FH         LINE#         22
-  C:020FH         LINE#         24
-  C:020FH         LINE#         25
-  C:020FH         LINE#         28
-BL51 BANKED LINKER/LOCATER V6.22                                                      12/06/2023  13:30:06  PAGE 4
+  C:026AH         LINE#         14
+  C:026AH         LINE#         16
+  C:026FH         LINE#         17
+BL51 BANKED LINKER/LOCATER V6.22                                                      12/07/2023  21:54:55  PAGE 4
 
 
-  C:0217H         LINE#         29
-  C:0229H         LINE#         30
-  C:022DH         LINE#         31
-  C:0230H         LINE#         32
-  C:0233H         LINE#         33
-  C:0235H         LINE#         34
-  C:0238H         LINE#         35
-  C:023BH         LINE#         36
-  C:023BH         LINE#         37
-  C:0240H         LINE#         38
-  C:0240H         LINE#         39
+  C:0271H         LINE#         18
+  C:0274H         LINE#         20
+  C:0274H         LINE#         21
+  C:0277H         LINE#         22
+  C:027FH         LINE#         23
+  C:027FH         LINE#         25
+  C:0282H         LINE#         26
+  C:0284H         LINE#         27
+  C:0284H         LINE#         28
+  C:0287H         LINE#         29
   -------         ENDPROC       MAIN
   -------         ENDMOD        MAIN
 
@@ -201,48 +200,48 @@ SYMBOL TABLE OF MODULE:  .\OUTPUT\BLESwitch (?C_STARTUP)
   D:00B2H         PUBLIC        P3M0
   D:00B1H         PUBLIC        P3M1
   D:00B0H         PUBLIC        P3
-  C:02A2H         PUBLIC        Led_Init
-  C:02C2H         PUBLIC        Led_Off
-  C:02BFH         PUBLIC        Led_On
+  C:0301H         PUBLIC        Led_Init
+  C:0313H         PUBLIC        Led_Off
+  C:0310H         PUBLIC        Led_On
   B:00B0H.2       PUBLIC        led
   -------         PROC          LED_INIT
-  C:02A2H         LINE#         9
-  C:02A2H         LINE#         11
-  C:02A5H         LINE#         12
-  C:02A8H         LINE#         13
+  C:0301H         LINE#         9
+  C:0301H         LINE#         11
+  C:0304H         LINE#         12
+  C:0307H         LINE#         13
   -------         ENDPROC       LED_INIT
   -------         PROC          LED_ON
-  C:02BFH         LINE#         15
-  C:02BFH         LINE#         16
-  C:02C1H         LINE#         17
+  C:0310H         LINE#         15
+  C:0310H         LINE#         16
+  C:0312H         LINE#         17
   -------         ENDPROC       LED_ON
   -------         PROC          LED_OFF
-  C:02C2H         LINE#         19
-  C:02C2H         LINE#         20
-  C:02C4H         LINE#         21
+  C:0313H         LINE#         19
+  C:0313H         LINE#         20
+  C:0315H         LINE#         21
   -------         ENDPROC       LED_OFF
   -------         ENDMOD        LED
 
   -------         MODULE        UART
   C:0000H         SYMBOL        _ICE_DUMMY_
-  C:02B7H         PUBLIC        Disable_Ext4
+  C:0308H         PUBLIC        Disable_Ext4
   D:00AFH         PUBLIC        ie2
   D:00B0H         PUBLIC        P3
   B:00B0H.0       PUBLIC        uart_rx
   D:0008H         PUBLIC        rx_len
   B:00B0H.1       PUBLIC        uart_tx
-  C:0290H         PUBLIC        Timer2_config
+  C:02EEH         PUBLIC        Timer2_config
   C:007FH         PUBLIC        Enable_Ext4
-  C:0268H         PUBLIC        Uart_Init
-  C:0242H         PUBLIC        Ext4_Interrupt
+  C:004CH         PUBLIC        Uart_Init
+  C:0244H         PUBLIC        Ext4_Interrupt
   C:0066H         PUBLIC        _Uart_SendByte
   D:0009H         PUBLIC        uart_rx_buf
   D:000FH         PUBLIC        REND
   D:0010H         PUBLIC        TEND
-BL51 BANKED LINKER/LOCATER V6.22                                                      12/06/2023  13:30:06  PAGE 5
-
-
   D:0011H         PUBLIC        rbuf
+BL51 BANKED LINKER/LOCATER V6.22                                                      12/07/2023  21:54:55  PAGE 5
+
+
   D:0012H         PUBLIC        RING
   D:0013H         PUBLIC        tbuf
   D:0014H         PUBLIC        TING
@@ -250,12 +249,12 @@ SYMBOL TABLE OF MODULE:  .\OUTPUT\BLESwitch (?C_STARTUP)
   D:008FH         PUBLIC        int_clkO
   D:0016H         PUBLIC        rcnt
   D:0017H         PUBLIC        tcnt
-  C:027EH         PUBLIC        Uart_LoopTest
+  C:02A7H         PUBLIC        Uart_LoopTest
   D:008EH         PUBLIC        auxr
   D:00D6H         PUBLIC        TH2
-  C:02BBH         PUBLIC        Timer2_Disable
+  C:030CH         PUBLIC        Timer2_Disable
   D:00D7H         PUBLIC        TL2
-  C:029AH         PUBLIC        _Timer2_Enable
+  C:0003H         PUBLIC        _Timer2_Enable
   C:0086H         PUBLIC        Timer2_Interrupt
   -------         PROC          ENABLE_EXT4
   C:007FH         LINE#         53
@@ -263,55 +262,55 @@ SYMBOL TABLE OF MODULE:  .\OUTPUT\BLESwitch (?C_STARTUP)
   C:0082H         LINE#         55
   -------         ENDPROC       ENABLE_EXT4
   -------         PROC          DISABLE_EXT4
-  C:02B7H         LINE#         57
-  C:02B7H         LINE#         58
-  C:02BAH         LINE#         59
+  C:0308H         LINE#         57
+  C:0308H         LINE#         58
+  C:030BH         LINE#         59
   -------         ENDPROC       DISABLE_EXT4
   -------         PROC          TIMER2_CONFIG
-  C:0290H         LINE#         61
-  C:0290H         LINE#         63
-  C:0293H         LINE#         64
-  C:0296H         LINE#         66
-  C:0299H         LINE#         68
+  C:02EEH         LINE#         61
+  C:02EEH         LINE#         63
+  C:02F1H         LINE#         64
+  C:02F4H         LINE#         66
+  C:02F7H         LINE#         68
   -------         ENDPROC       TIMER2_CONFIG
   -------         PROC          TIMER2_DISABLE
-  C:02BBH         LINE#         70
-  C:02BBH         LINE#         71
-  C:02BEH         LINE#         72
+  C:030CH         LINE#         70
+  C:030CH         LINE#         71
+  C:030FH         LINE#         72
   -------         ENDPROC       TIMER2_DISABLE
   -------         PROC          _TIMER2_ENABLE
   D:0007H         SYMBOL        th1
   D:0005H         SYMBOL        tl1
-  C:029AH         LINE#         74
-  C:029AH         LINE#         75
-  C:029CH         LINE#         76
-  C:029EH         LINE#         77
-  C:02A1H         LINE#         78
+  C:0003H         LINE#         74
+  C:0003H         LINE#         75
+  C:0005H         LINE#         76
+  C:0007H         LINE#         77
+  C:000AH         LINE#         78
   -------         ENDPROC       _TIMER2_ENABLE
   -------         PROC          UART_INIT
-  C:0268H         LINE#         82
-  C:0268H         LINE#         84
-  C:026BH         LINE#         86
-  C:026EH         LINE#         87
-  C:0271H         LINE#         90
-  C:0274H         LINE#         91
-  C:0277H         LINE#         92
-  C:0279H         LINE#         93
-  C:027BH         LINE#         94
-  C:027DH         LINE#         95
-BL51 BANKED LINKER/LOCATER V6.22                                                      12/06/2023  13:30:06  PAGE 6
-
-
+  C:004CH         LINE#         82
+  C:004CH         LINE#         84
+  C:004FH         LINE#         86
+  C:0052H         LINE#         87
+  C:0055H         LINE#         90
+  C:0058H         LINE#         91
+  C:005BH         LINE#         92
+  C:005DH         LINE#         93
+  C:005FH         LINE#         94
+  C:0061H         LINE#         95
   -------         ENDPROC       UART_INIT
+BL51 BANKED LINKER/LOCATER V6.22                                                      12/07/2023  21:54:55  PAGE 6
+
+
   -------         PROC          EXT4_INTERRUPT
-  C:0242H         LINE#         97
-  C:024BH         LINE#         98
-  C:024EH         LINE#         99
-  C:0251H         LINE#         100
-  C:0254H         LINE#         101
-  C:0257H         LINE#         102
-  C:025EH         LINE#         103
-  C:0261H         LINE#         104
+  C:0244H         LINE#         97
+  C:024DH         LINE#         98
+  C:0250H         LINE#         99
+  C:0253H         LINE#         100
+  C:0256H         LINE#         101
+  C:0259H         LINE#         102
+  C:0260H         LINE#         103
+  C:0263H         LINE#         104
   -------         ENDPROC       EXT4_INTERRUPT
   -------         PROC          _UART_SENDBYTE
   D:0007H         SYMBOL        tx_data
@@ -326,12 +325,12 @@ SYMBOL TABLE OF MODULE:  .\OUTPUT\BLESwitch (?C_STARTUP)
   C:007EH         LINE#         114
   -------         ENDPROC       _UART_SENDBYTE
   -------         PROC          UART_LOOPTEST
-  C:027EH         LINE#         116
-  C:027EH         LINE#         117
-  C:0287H         LINE#         118
-  C:028CH         LINE#         119
-  C:028FH         LINE#         120
-  C:028FH         LINE#         121
+  C:02A7H         LINE#         116
+  C:02A7H         LINE#         117
+  C:02B0H         LINE#         118
+  C:02B5H         LINE#         119
+  C:02B8H         LINE#         120
+  C:02B8H         LINE#         121
   -------         ENDPROC       UART_LOOPTEST
   -------         PROC          TIMER2_INTERRUPT
   C:0086H         LINE#         123
@@ -359,10 +358,10 @@ SYMBOL TABLE OF MODULE:  .\OUTPUT\BLESwitch (?C_STARTUP)
   C:00ECH         LINE#         146
   C:00ECH         LINE#         147
   C:00EEH         LINE#         148
-BL51 BANKED LINKER/LOCATER V6.22                                                      12/06/2023  13:30:06  PAGE 7
-
-
   C:00F4H         LINE#         149
+BL51 BANKED LINKER/LOCATER V6.22                                                      12/07/2023  21:54:55  PAGE 7
+
+
   C:00FAH         LINE#         150
   C:00FAH         LINE#         151
   C:00FCH         LINE#         152
@@ -387,79 +386,117 @@ SYMBOL TABLE OF MODULE:  .\OUTPUT\BLESwitch (?C_STARTUP)
   C:0000H         SYMBOL        _ICE_DUMMY_
   D:00B2H         PUBLIC        P3M0
   D:00B1H         PUBLIC        P3M1
-  C:02C8H         PUBLIC        Steer_Off
   D:00B0H         PUBLIC        P3
-  C:02C5H         PUBLIC        Steer_On
+  C:000EH         PUBLIC        Open_Door
+  C:02B9H         PUBLIC        Timer0_config
   B:00B0H.3       PUBLIC        steer
-  C:02B0H         PUBLIC        Steer_Init
+  D:001EH         PUBLIC        timer_count
+  D:0089H         PUBLIC        TMOD
+  D:008EH         PUBLIC        auxr
+  B:00A8H.1       PUBLIC        ET0
+  D:008CH         PUBLIC        TH0
+  D:008AH         PUBLIC        TL0
+  B:0088H.4       PUBLIC        TR0
+  C:02CAH         PUBLIC        Timer0_Interrupt
+  C:0289H         PUBLIC        _delay_100us
+  C:02F8H         PUBLIC        Steer_Init
+  -------         PROC          TIMER0_CONFIG
+  C:02B9H         LINE#         22
+  C:02B9H         LINE#         24
+  C:02BCH         LINE#         26
+  C:02BFH         LINE#         27
+  C:02C2H         LINE#         28
+  C:02C5H         LINE#         30
+  C:02C7H         LINE#         31
+  C:02C9H         LINE#         33
+  -------         ENDPROC       TIMER0_CONFIG
   -------         PROC          STEER_INIT
-  C:02B0H         LINE#         8
-  C:02B0H         LINE#         10
-  C:02B3H         LINE#         11
-  C:02B6H         LINE#         12
+  C:02F8H         LINE#         35
+  C:02F8H         LINE#         37
+  C:02FBH         LINE#         38
+  C:02FEH         LINE#         39
   -------         ENDPROC       STEER_INIT
-  -------         PROC          STEER_ON
-  C:02C5H         LINE#         14
-  C:02C5H         LINE#         15
-  C:02C7H         LINE#         16
-  -------         ENDPROC       STEER_ON
-  -------         PROC          STEER_OFF
-  C:02C8H         LINE#         18
-  C:02C8H         LINE#         19
-  C:02CAH         LINE#         20
-  -------         ENDPROC       STEER_OFF
+  -------         PROC          TIMER0_INTERRUPT
+  C:02CAH         LINE#         43
+  C:02CCH         LINE#         44
+BL51 BANKED LINKER/LOCATER V6.22                                                      12/07/2023  21:54:55  PAGE 8
+
+
+  C:02D4H         LINE#         45
+  -------         ENDPROC       TIMER0_INTERRUPT
+  -------         PROC          _DELAY_100US
+  D:0007H         SYMBOL        n100us
+  C:0289H         LINE#         47
+  C:0289H         LINE#         48
+  C:028EH         LINE#         49
+  C:0291H         LINE#         50
+  C:0294H         LINE#         51
+  C:0296H         LINE#         52
+  C:02A4H         LINE#         53
+  C:02A6H         LINE#         54
+  -------         ENDPROC       _DELAY_100US
+  -------         PROC          OPEN_DOOR
+  -------         DO            
+  D:0004H         SYMBOL        i
+  -------         ENDDO         
+  C:000EH         LINE#         56
+  C:000EH         LINE#         58
+  C:0011H         LINE#         59
+  C:0013H         LINE#         60
+  C:0018H         LINE#         61
+  C:001AH         LINE#         62
+  C:001FH         LINE#         63
+  C:002AH         LINE#         65
+  C:002FH         LINE#         67
+  C:0032H         LINE#         68
+  C:0034H         LINE#         69
+  C:0039H         LINE#         70
+  C:003BH         LINE#         71
+  C:0040H         LINE#         72
+  C:004BH         LINE#         73
+  -------         ENDPROC       OPEN_DOOR
   -------         ENDMOD        STEER
 
   -------         MODULE        BLE
   C:0000H         SYMBOL        _ICE_DUMMY_
-  C:0003H         PUBLIC        Ble_Decode
+  C:01BFH         PUBLIC        Ble_Decode
   -------         PROC          BLE_DECODE
   -------         DO            
   D:001BH         SYMBOL        ble_structor
   -------         ENDDO         
-  C:0003H         LINE#         4
-  C:0003H         LINE#         5
-BL51 BANKED LINKER/LOCATER V6.22                                                      12/06/2023  13:30:06  PAGE 8
+  C:01BFH         LINE#         4
+  C:01BFH         LINE#         5
+  C:01C3H         LINE#         6
+  C:01CEH         LINE#         7
+  C:01DAH         LINE#         8
+  C:01ECH         LINE#         9
+  C:01F8H         LINE#         11
+  C:0202H         LINE#         12
+  C:0205H         LINE#         13
+  C:0208H         LINE#         14
+  C:020BH         LINE#         15
+  C:020EH         LINE#         16
+  C:0211H         LINE#         17
+  C:0211H         LINE#         18
+  C:0214H         LINE#         19
+BL51 BANKED LINKER/LOCATER V6.22                                                      12/07/2023  21:54:55  PAGE 9
 
 
-  C:0007H         LINE#         6
-  C:0012H         LINE#         7
-  C:001EH         LINE#         8
-  C:0030H         LINE#         9
-  C:003CH         LINE#         11
-  C:0046H         LINE#         12
-  C:0049H         LINE#         13
-  C:004CH         LINE#         14
-  C:004FH         LINE#         15
-  C:0052H         LINE#         16
-  C:0054H         LINE#         17
-  C:0054H         LINE#         18
-  C:0057H         LINE#         19
-  C:0059H         LINE#         20
-  C:0059H         LINE#         21
-  C:0059H         LINE#         22
+  C:0216H         LINE#         20
+  C:0216H         LINE#         21
+  C:0216H         LINE#         22
   -------         ENDPROC       BLE_DECODE
   -------         ENDMOD        BLE
 
   -------         MODULE        ?C?CLDOPTR
-  C:01BFH         PUBLIC        ?C?CLDOPTR
+  C:0217H         PUBLIC        ?C?CLDOPTR
   -------         ENDMOD        ?C?CLDOPTR
-
-  -------         MODULE        ?C?SLCMP
-  C:01ECH         PUBLIC        ?C?SLCMP
-  -------         ENDMOD        ?C?SLCMP
 
 *** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
     SEGMENT: ?PR?UART_LOOPTEST?UART
 
 *** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?STEER_INIT?STEER
+    SEGMENT: ?PR?OPEN_DOOR?STEER
 
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?STEER_ON?STEER
-
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?STEER_OFF?STEER
-
-Program Size: data=31.0 xdata=0 code=715
-LINK/LOCATE RUN COMPLETE.  4 WARNING(S),  0 ERROR(S)
+Program Size: data=33.0 xdata=0 code=789
+LINK/LOCATE RUN COMPLETE.  2 WARNING(S),  0 ERROR(S)

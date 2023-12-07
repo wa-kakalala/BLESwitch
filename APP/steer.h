@@ -3,7 +3,6 @@
 #include <reg51.h>
 
 void Steer_Init(void);
-void Steer_On(void);
-void Steer_Off(void);
+void Open_Door(void);
 
 #endif
